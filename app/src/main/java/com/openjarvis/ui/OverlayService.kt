@@ -78,11 +78,8 @@ class OverlayService : Service() {
             }
         }
         
-        try {
-            voiceManager.initialize()
-        } catch (e: Exception) {
-            // Voice initialization
-        }
+        // VoiceManager initializes itself in its constructor.
+        // No explicit initialize() call is required here.
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

@@ -7,6 +7,8 @@ import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class MCPClient(
     val server: MCPServer
@@ -37,10 +39,7 @@ class MCPClient(
             
             val request = Request.Builder()
                 .url(server.url)
-                .post(okhttp3.RequestBody.create(
-                      okhttp3.MediaType.get("application/json"),
-                    requestBody
-                ))
+                .post(requestBody.toRequestBody("application/json".toMediaType()))
                 .build()
             
             client.newCall(request).execute().use { response ->
@@ -79,10 +78,7 @@ class MCPClient(
             
             val request = Request.Builder()
                 .url(server.url)
-                .post(okhttp3.RequestBody.create(
-                      okhttp3.MediaType.get("application/json"),
-                    requestBody
-                ))
+                .post(requestBody.toRequestBody("application/json".toMediaType()))
                 .build()
             
             client.newCall(request).execute().use { response ->
@@ -127,10 +123,7 @@ class MCPClient(
             
             val request = Request.Builder()
                 .url(server.url)
-                .post(okhttp3.RequestBody.create(
-                      okhttp3.MediaType.get("application/json"),
-                      requestBody
-                ))
+                .post(requestBody.toRequestBody("application/json".toMediaType()))
                 .build()
             
             client.newCall(request).execute().use { response ->
