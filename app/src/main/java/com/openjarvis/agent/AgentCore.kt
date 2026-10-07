@@ -92,7 +92,7 @@ fun executeTask(cleanCommand: String) {
                     when (sanitized) {
                         is PromptSanitizer.SanitizeResult.Rejected -> {
                             _state.value = AgentState.Error(sanitized.reason)
-                            return@taskMutex.withLock
+                            return@withLock
                         }
                         is PromptSanitizer.SanitizeResult.Suspicious -> {
                             _state.value = AgentState.Running("analyzing...")
@@ -192,6 +192,7 @@ fun executeTask(cleanCommand: String) {
             }
         }
     }
+}
 
     suspend fun testConnection(): Result<Long> {
         return universalAdapter.testConnection()
@@ -300,6 +301,5 @@ fun executeTask(cleanCommand: String) {
         }
         
         return null
-    }
     }
 }
